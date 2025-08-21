@@ -80,14 +80,59 @@ def calculateNode(index, matrix, matrixCurrent, matrixVoltage):
 
 
 
-def inputDiagonalMesh(index, matrix, matrixCurrent, matrixVoltage):
-    pass
+def inputDiagonalMesh(index, matrix):
+    print("\nEnter the Resistance (Ω): ")
+    print("When there are more than one, input with spaces")
+    time.sleep(0.3)
+    
+    for i in range (1,index+1): 
+        print(i)
+        inputStrConductance = input(f"Resistor (Ω) passed through the loop {i} (R{i,i}): ")
+        # inputIntConductance = 
+        # print(inputIntConductance)
+        matrix[i-1][i-1] = sum(Fraction(num) for num in inputStrConductance.split())
+       
 
 def inputMesh(index, matrix, matrixCurrent, matrixVoltage):
-    pass
+    print("\n Enter the other Resistance (Ω) element")
+    print("When there are more than one, input with spaces")
+
+    for i in range (1,index):
+        print(f"=== Row {i} ===")
+        for j in range (1+i,index+1):
+            inputStrConductance = input(f"Resistance (Ω) passed through the loop {i} and {j} (G{i}{j} or G{j}{i}): ")
+            matrix[i-1][j-1] = -1*sum(Fraction(num) for num in inputStrConductance.split())
+            matrix[j-1][i-1] = -1*sum(Fraction(num) for num in inputStrConductance.split())
+            print(f"Column {j}")
+    print(matrix)
+
+    print("\nNow, Input the Voltage (V) from battery","\n"+
+          "If the current that through more than once, input with space and","\n"+
+          "Don't forget to add the sign (When current loop through from plus to minus battery, V is minus)")
+
+    for i in range(1,index+1):
+        inputStrVoltage = input(f"Voltage (V) that through directly to mesh/loop {i} (I{i}): ")
+        matrixVoltage[i-1][0] = sum(float(num) for num in inputStrVoltage.split())
+    print(matrixVoltage)
 
 def calculateMesh(index, matrix, matrixCurrent, matrixVoltage):
-    pass
+    print("Thank you")
+    print("Calculating the Current")
+    print("V = I*R")
+    matrixDeterminant = getMatrixDeterminant(matrix)
+    cramerMatrix = np.zeros((index,index),dtype =float)
+    cramerMatrixCurrent = np.zeros((index,0),dtype=float )
+    for i in range (1,index+1):
+        cramerMatrix = np.array(matrix)
+        print(matrix)
+        print(f"Calculate Current (A) in loop {i}")
+        for j in range (1,index+1):
+            cramerMatrix[j-1][i-1] = matrixVoltage[j-1][0]
+            # cramerMatrixCurrent[i-1][0] = matrix[i-1][j-1]
+        matrixCurrent[i-1][0] = getMatrixDeterminant(cramerMatrix)/matrixDeterminant
+        print(cramerMatrix)
+        print(f"The Current (A) on loop {i} is : {matrixCurrent[i-1][0]}A ")
+
 
 def getMatrixMinor(matrix, i, j):
     """Hapus baris i dan kolom j dari matrix"""

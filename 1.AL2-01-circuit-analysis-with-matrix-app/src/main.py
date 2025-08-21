@@ -44,13 +44,18 @@ def nodalMethod():
 # Mesh modex
 def meshMethod():
     mesh = 0
+    print("Choose Loop Reference (all clockwise for recommendation) and")
+    print("When current through battery from plus to minus, voltage is minus ()")
     mesh = int(input("How many Mesh in the circuit?: "))
     matrices.createMatrix(mesh)
+    matrices.inputDiagonalMesh(mesh, matrices.matrix)
+    matrices.inputMesh(mesh,matrices.matrix,matrices.currentMatrix,matrices.voltageMatrix)
+    matrices.calculateMesh(mesh,matrices.matrix,matrices.currentMatrix,matrices.voltageMatrix)
 
 
 # Start of the code
 if __name__ == '__main__':
     print("Program Oppened")
     time.sleep(0.5)
-    # _ = os.system("cls")
+    _ = os.system("cls")
     main()
