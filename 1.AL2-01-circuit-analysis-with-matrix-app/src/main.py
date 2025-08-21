@@ -6,6 +6,7 @@ def main():
     opening()
     menuSystem()
     ending()
+    ending()
 # Opening CLI
 def opening():
     opening = "WELCOME TO CIRCUIT ANALSYSIS WITH MATRICES"
@@ -45,13 +46,18 @@ def menuSystem():
         if quitInput != 'Y' and quitInput !='y' and quitInput != "N" and quitInput !="n" :
             print("Input the fucking correct option")
 
+
+# quitInput = input("Do you want to calculate again? : [Y]es for again, [N]o for quit [Y/N][y/n]: ")
+#         if quitInput != 'Y' and quitInput !='y' and quitInput != "N" and quitInput !="n" :
+#             print("Input the fucking correct option")
+
 def ending():
     ending = "THANK YOU FOR USING CIRCUIT ANALYSIS WITH MATRICES"
     ending2 = "OMOP Projects"
     ending3 = "By Tatizen Group"
     spacing = (100-len(ending))//2 # Centering word
     spacing2 = (100-len(ending2))//2
-    spacing3 = (100-len(ending3))//2
+    spacing3 = (100-len(ending3))//2        
     print("="*100)
     print(" "*spacing,ending)
     print(" "*spacing2,ending2)
