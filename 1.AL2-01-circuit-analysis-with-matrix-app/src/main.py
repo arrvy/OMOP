@@ -37,7 +37,8 @@ def nodalMethod():
     node = int(input("How many Nodes (except nodes refence) in the circuit?: "))
     matrices.createMatrix(node)
     matrices.inputDiagonalNode(node, matrices.matrix)
-    matrices.inputNode(node,matrices.matrix)
+    matrices.inputNode(node,matrices.matrix,matrices.currentMatrix,matrices.voltageMatrix)
+    matrices.calculateNode(node,matrices.matrix,matrices.currentMatrix,matrices.voltageMatrix)
     
 
 # Mesh modex
