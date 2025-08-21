@@ -5,7 +5,7 @@ import matrices
 def main():
     opening()
     menuSystem()
-
+    ending()
 # Opening CLI
 def opening():
     opening = "WELCOME TO CIRCUIT ANALSYSIS WITH MATRICES"
@@ -17,18 +17,48 @@ def opening():
 # Code for user input mode and validation
 def menuSystem():
     chooseInput = 0
-    while chooseInput!=1 and chooseInput!=2:
-        print("Select the Analysis Method:")
-        print("1. Nodal Analysis")
-        print("2. Mesh Analysis")
-        chooseInput = int(input("Select the method [1/2]: "))
-        match chooseInput:
-            case 1:
-                nodalMethod()
-            case 2:
-                meshMethod()
-            case _:
-                print("\nEnter the correct value, you fucking moron\n\n")
+    quitInput = 'Y'
+
+    while quitInput !='N' and quitInput !='n' :
+        chooseInput = 0
+        if quitInput == 'Y' or quitInput == 'y':
+            print("="*100)
+            print("")
+            print("="*100)
+        if quitInput != 'Y' and quitInput != 'y':
+            quitInput = input("Do you want to calculate again? : [Y]es for again, [N]o for quit [Y/N][y/n]: ")
+            continue
+        while chooseInput!='1' and chooseInput!='2':
+            print("Select the Analysis Method:")
+            print("1. Nodal Analysis")
+            print("2. Mesh Analysis")
+            chooseInput = input("Select the method [1/2]: ")
+            match chooseInput:
+                case '1':
+                    nodalMethod()
+                case '2':
+                    meshMethod()
+                case _:
+                    print("\nEnter the correct value, you fucking moron\n\n")
+
+        quitInput = input("Do you want to calculate again? : [Y]es for again, [N]o for quit [Y/N][y/n]: ")
+        if quitInput != 'Y' and quitInput !='y' and quitInput != "N" and quitInput !="n" :
+            print("Input the fucking correct option")
+
+def ending():
+    ending = "THANK YOU FOR USING CIRCUIT ANALYSIS WITH MATRICES"
+    ending2 = "OMOP Projects"
+    ending3 = "By Tatizen Group"
+    spacing = (100-len(ending))//2 # Centering word
+    spacing2 = (100-len(ending2))//2
+    spacing3 = (100-len(ending3))//2
+    print("="*100)
+    print(" "*spacing,ending)
+    print(" "*spacing2,ending2)
+    print(" "*spacing3,ending3)
+    print("="*100)
+    
+        
 
 # Nodal mode
 def nodalMethod():
