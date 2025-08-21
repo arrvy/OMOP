@@ -64,23 +64,29 @@ def calculateNode(index, matrix, matrixCurrent, matrixVoltage):
     print("Thank you")
     print("Calculating the voltage")
     print("I = V * G")
-    cramerMatrix = matrix
-    cramerMatrixCurrent = np.zeros((index,0),dtype=float
-                                   )
+    matrixDeterminant = getMatrixDeterminant(matrix)
+    cramerMatrix = np.zeros((index,index),dtype =float)
+    cramerMatrixCurrent = np.zeros((index,0),dtype=float )
     for i in range (1,index+1):
+        cramerMatrix = np.array(matrix)
+        print(matrix)
         print(f"Calculate voltage in node {i}")
         for j in range (1,index+1):
-            cramerMatrix[i-1][j-1] = matrixCurrent[i-1][0]
+            cramerMatrix[j-1][i-1] = matrixCurrent[j-1][0]
             # cramerMatrixCurrent[i-1][0] = matrix[i-1][j-1]
-        matrixVoltage[i-1][0] = getMatrixDeterminant(cramerMatrix)
+        matrixVoltage[i-1][0] = getMatrixDeterminant(cramerMatrix)/matrixDeterminant
+        print(cramerMatrix)
         print(f"The voltage on node {i} is : {matrixVoltage[i-1][0]}V ")
 
 
 
-def inputDiagonalMesh(index, matrix):
+def inputDiagonalMesh(index, matrix, matrixCurrent, matrixVoltage):
     pass
 
-def inputMesh(index, matrix):
+def inputMesh(index, matrix, matrixCurrent, matrixVoltage):
+    pass
+
+def calculateMesh(index, matrix, matrixCurrent, matrixVoltage):
     pass
 
 def getMatrixMinor(matrix, i, j):

@@ -52,5 +52,5 @@ def meshMethod():
 if __name__ == '__main__':
     print("Program Oppened")
     time.sleep(0.5)
-    _ = os.system("cls")
+    # _ = os.system("cls")
     main()
