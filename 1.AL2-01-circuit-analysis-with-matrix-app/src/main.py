@@ -6,6 +6,7 @@ def main():
     opening()
     menuSystem()
     ending()
+    ending()
 # Opening CLI
 def opening():
     opening = "WELCOME TO CIRCUIT ANALSYSIS WITH MATRICES"
